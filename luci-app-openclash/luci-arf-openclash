@@ -63,7 +63,7 @@ sleep 2
 cd
 rm -rf *.ipk
 sleep 2
-rm -rf /usr/bin/luci-arf-openclash
+rm -rf /usr/bin/luci-arf*
 sleep 2
 rm -rf /tmp/luci*
 sleep 2
