@@ -53,7 +53,7 @@ cd /root
 opkg update
 sleep 2
 
-wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash_0.45.129-beta_all.ipk
+wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-arf-openclash_0.45.129-beta.ipk
 sleep 2
 opkg install --force-depends *.ipk
 sleep 2
