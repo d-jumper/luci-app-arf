@@ -36,11 +36,13 @@ opkg remove --force-depends luci-app-openclash
 sleep 2
 rm -rf /tmp/luci*
 sleep 2
-rm -rf /usr/lib/lua/luci/model/cbi/openclash
+rm -rf /usr/lib/lua/luci/model/cbi/openclash*
 sleep 2
-rm -rf /usr/lib/lua/luci/view/openclash
+rm -rf /usr/lib/lua/luci/view/openclash*
 sleep 2
-rm -rf /www/luci-static/resources/openclash
+rm -rf /usr/lib/lua/luci/view/controler/openclash*
+sleep 2
+rm -rf /www/luci-static/resources/openclash*
 sleep 2
 rm -rf /tmp/openclash*
 sleep 2
