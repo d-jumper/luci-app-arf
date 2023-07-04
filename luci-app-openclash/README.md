@@ -1,4 +1,15 @@
-# How to install
+# luci-app-openclash
+
+- OpenClash_0.45.129-beta MOD Smooth GUI
+- Include Proxies LIVE.ON
+- Include Proxies TSEL-ILPED
+- Include Config Single Modem
+- Include Config Dual Modem / Loadbalance
+- Include Simple Rules / Pisah Trafic
+- Include Adguard DNS
+- Include YACD PANEL TAB
+- Include Config Editor ( Tinyfm )
+
 ## AIN ( Auto INstaller )
 Paste in your terminal
 ```
