@@ -38,7 +38,7 @@ rm -rf /tmp/clash*
 ```
 - Install New Openclash
 ```
-cd /root && opkg update && wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash.ipk
+cd /root && opkg update && wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash.ipk && opkg install --force-depends *.ipk
 ```
 - Clear Cache
 ```
