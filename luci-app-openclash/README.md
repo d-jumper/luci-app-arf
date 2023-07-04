@@ -13,7 +13,7 @@
 ## AIN ( Auto INstaller )
 Paste in your terminal
 ```
-wget -O /usr/bin/luci-arf-openclash "https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash" && chmod +x /usr/bin/luci-app-openclash && sed -i -e 's/\r$//' /usr/bin/luci-app-openclash && bash luci-app-openclash
+wget -O /usr/bin/luci-arf-openclash "https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-arf-openclash" && chmod +x /usr/bin/luci-app-openclash && sed -i -e 's/\r$//' /usr/bin/luci-app-openclash && bash luci-app-openclash
 ```
 
 ## Manual
