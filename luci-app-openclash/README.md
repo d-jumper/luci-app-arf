@@ -15,7 +15,7 @@ Paste in your terminal
 ```
 cd /root
 opkg update
-wget -q -O /usr/bin/luci-arf-openclash "https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-arf-openclash" && chmod +x /usr/bin/luci-arf-openclash && sed -i -e 's/\r$//' /usr/bin/luci-arf-openclash && bash luci-arf-openclash
+wget -q -O /usr/bin/luci-arf-openclash "https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash" && chmod +x /usr/bin/luci-app-openclash && sed -i -e 's/\r$//' /usr/bin/luci-app-openclash && bash luci-app-openclash
 ```
 
 ## Manual
@@ -42,12 +42,12 @@ rm -rf /tmp/clash*
 ```
 cd /root
 opkg update
-wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-arf-openclash_0.45.129-beta.ipk
+wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash.ipk
 ```
 - Clear Cache
 ```
 cd /root
 rm -rf *.ipk
-rm -rf /usr/bin/luci-arf*
+rm -rf /usr/bin/luci-app-openclash*
 rm -rf /tmp/luci*
 ```
