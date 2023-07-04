@@ -38,11 +38,13 @@ opkg remove --force-depends luci-app-openclash
 sleep 2
 rm -rf /tmp/luci*
 sleep 2
-rm -rf /usr/lib/lua/luci/model/cbi/openclash
+rm -rf /usr/lib/lua/luci/model/cbi/openclash*
 sleep 2
-rm -rf /usr/lib/lua/luci/view/openclash
+rm -rf /usr/lib/lua/luci/view/openclash*
 sleep 2
-rm -rf /www/luci-static/resources/openclash
+rm -rf /usr/lib/lua/luci/view/controller/openclash*
+sleep 2
+rm -rf /www/luci-static/resources/openclash*
 sleep 2
 rm -rf /tmp/openclash*
 sleep 2
@@ -55,7 +57,7 @@ cd /root
 opkg update
 sleep 2
 
-wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-arf-openclash_0.45.129-beta.ipk
+wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash.ipk
 sleep 2
 opkg install --force-depends *.ipk
 sleep 2
