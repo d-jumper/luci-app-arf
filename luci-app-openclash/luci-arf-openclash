@@ -19,6 +19,8 @@ echo -e "- Include Config Single Modem"
 echo -e "- Include Config Dual Modem / Loadbalance"
 echo -e "- Include Simple Rules / Pisah Trafic"
 echo -e "- Include Adguard DNS"
+echo -e "- Include YACD PANEL TAB"
+echo -e "- Include Config Editor ( Tinyfm )"
 echo -e ""
 echo -e " Proses peng-installan bisa lebih lama dari perkiraan, pastikan koneksi internet stabil!..."
 echo -e ""
@@ -36,13 +38,11 @@ opkg remove --force-depends luci-app-openclash
 sleep 2
 rm -rf /tmp/luci*
 sleep 2
-rm -rf /usr/lib/lua/luci/model/cbi/openclash*
+rm -rf /usr/lib/lua/luci/model/cbi/openclash
 sleep 2
-rm -rf /usr/lib/lua/luci/view/openclash*
+rm -rf /usr/lib/lua/luci/view/openclash
 sleep 2
-rm -rf /usr/lib/lua/luci/view/controler/openclash*
-sleep 2
-rm -rf /www/luci-static/resources/openclash*
+rm -rf /www/luci-static/resources/openclash
 sleep 2
 rm -rf /tmp/openclash*
 sleep 2
