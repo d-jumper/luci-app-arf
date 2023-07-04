@@ -60,7 +60,7 @@ sleep 2
 opkg install --force-depends *.ipk
 sleep 2
 
-cd
+cd /root
 rm -rf *.ipk
 sleep 2
 rm -rf /usr/bin/luci-arf*
