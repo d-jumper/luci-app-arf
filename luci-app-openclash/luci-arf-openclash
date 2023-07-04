@@ -44,9 +44,14 @@ echo -e ""
 read -n 1 -s -r -p "Tekan ENTER untuk melanjutkan / CTRL + C untuk membatalkan"
 sleep 2
 echo -e ""
+echo -e ""
+
 
 cd /root
+echo -e " Meng-update seluruh Package ..."
 opkg update
+echo -e " "
+echo -e " Menghapus file lama Openclash..."
 opkg remove --force-depends luci-app-openclash
 sleep 2
 rm -rf /tmp/luci*
@@ -66,36 +71,53 @@ sleep 2
 rm -rf /tmp/luci*
 sleep 2
 
+echo -e " "
+echo -e " "
+echo -e " Meng-update seluruh Package ..."
 opkg update
+
+
 mkdir /root/luci-app-arf/
 cd /root/luci-app-arf/
 sleep 2
+echo -e " "
+echo -e " "
+echo -e " Meng-install Openclash Terbaru ..."
 wget https://github.com/vernesong/OpenClash/raw/master/luci-app-openclash_${lastest_version}_all.ipk
 sleep 2
 opkg install --force-depends *.ipk
 sleep 2
+
+echo -e " "
+echo -e " "
+echo -e " Membuat file Mod ..."
 rm -rvf /etc/openclash*
 wget https://github.com/arfprsty810/luci-app-arf/raw/main/luci-app-openclash/config-oc/etc.zip
 wget https://github.com/arfprsty810/luci-app-arf/raw/main/luci-app-openclash/config-oc/usr.zip
 wget https://github.com/arfprsty810/luci-app-arf/raw/main/luci-app-openclash/config-oc/www.zip
 sleep 2
-unzip etc.zip /etc/
-unzip usr.zip /usr/
-unzip www.zip /www/
+unzip etc.zip -d /etc/
+unzip usr.zip -d /usr/
+unzip www.zip -d /www/
 sleep 2
 
 cd /root
+echo -e " "
+echo -e " "
+echo -e " Membersihkan File-file yang sudah tidak terpakai ..."
 rm -rvf /root/luci-app-arf*
 sleep 2
 rm -rf /usr/bin/luci-arf*
 sleep 2
 rm -rf /tmp/luci*
 sleep 2
+echo -e " "
+echo -e " "
 echo -e "Finished ..."
 sleep 2
 
-echo -e ""
-echo -e ""
+echo -e " "
+echo -e " "
 echo -e " Installasi sudah selesai, Openclash sudah bisa dapat dijalankan ^_^ ..."
 echo -e ""
 read -n 1 -s -r -p "Pencet tombol apa saja untuk keluar & kembali"
