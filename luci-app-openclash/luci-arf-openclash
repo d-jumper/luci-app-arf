@@ -10,6 +10,7 @@ tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
+lastest_version="$(curl -s https://api.github.com/repos/vernesong/OpenClash/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 clear
 
 echo -e "  ************************************************"
@@ -24,7 +25,7 @@ echo -e "- Termasuk semua data config & data rules & data proxies."
 sleep 5
 echo -e " "
 echo -e "Installer ini akan menggantikan semua data sebelumnya ke versi Terbaru :"
-echo -e "- OpenClash_0.45.129-beta MOD by ARF.PRSTY"
+echo -e "- OpenClash_$lastest_version MOD by ARF.PRSTY"
 echo -e "- Include Proxies LIVE.ON"
 echo -e "- Include Proxies TSEL-ILPED"
 echo -e "- Include Config Single Modem"
@@ -69,7 +70,6 @@ cd /root
 opkg update
 sleep 2
 
-lastest_version="$(curl -s https://api.github.com/repos/vernesong/OpenClash/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 wget https://github.com/vernesong/OpenClash/releases/download/v$lastest_version/luci-app-openclash_$lastest_version_all.ipk
 
 sleep 2
