@@ -13,7 +13,7 @@
 ## AIN ( Auto INstaller )
 Paste in your terminal
 ```
-cd /root && opkg update && wget -q -O /usr/bin/luci-arf-openclash "https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash" && chmod +x /usr/bin/luci-app-openclash && sed -i -e 's/\r$//' /usr/bin/luci-app-openclash && bash luci-app-openclash
+cd /root && wget -q -O /usr/bin/luci-arf-openclash "https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash" && chmod +x /usr/bin/luci-app-openclash && sed -i -e 's/\r$//' /usr/bin/luci-app-openclash && bash luci-app-openclash
 ```
 
 ## Manual
@@ -38,7 +38,7 @@ rm -rf /tmp/clash*
 ```
 - Install New Openclash
 ```
-cd /root && opkg update && wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash.ipk && opkg install --force-depends *.ipk
+cd /root && wget https://raw.githubusercontent.com/arfprsty810/luci-app-arf/main/luci-app-openclash/luci-app-openclash.ipk && opkg install --force-depends *.ipk
 ```
 - Clear Cache
 ```
