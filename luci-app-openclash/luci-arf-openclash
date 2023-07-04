@@ -1,38 +1,36 @@
 #!/bin/bash
 clear
-clear
 echo -e "  ************************************************"
 echo -e "         Installer OpenClash Mod by ARF.PRSTY "
 echo -e "  ************************************************"
 echo -e " "
 echo -e "Notes : "
-echo -e "- Installer ini akan menghapus semua data yang ada di Openclash sebelumnya"
+echo -e "- Installer ini akan menghapus semua data yang ada di Openclash sebelumnya."
+echo -e "- Pastikan anda telah mem-backup data config dan data penting openclash anda."
 echo -e "- Saya tidak bertanggung jawab atas hilang nya semua data Openclash"
-echo -e "- Termasuk semua data config & data rules & data proxies"
-sleep 2
+echo -e "- Termasuk semua data config & data rules & data proxies."
+sleep 5
 echo -e " "
 echo -e "Installer ini akan menggantikan semua data sebelumnya ke versi Terbaru :"
-echo -e "- OpenClash_0.45.129-beta"
+echo -e "- OpenClash_0.45.129-beta MOD by ARF.PRSTY"
 echo -e "- Include Proxies LIVE.ON"
 echo -e "- Include Proxies TSEL-ILPED"
 echo -e "- Include Config Single Modem"
 echo -e "- Include Config Dual Modem / Loadbalance"
-echo -e "- Include Simple Rules"
+echo -e "- Include Simple Rules / Pisah Trafic"
 echo -e "- Include Adguard DNS"
 echo -e ""
-echo -e " Memulai menginstall dalam 3 detik....."
-sleep 3
+echo -e " Proses peng-installan bisa lebih lama dari perkiraan, pastikan koneksi internet stabil!..."
 echo -e ""
+echo -e "  ************************************************"
+echo -e "         Installer IPK.MOD Mod by ARF.PRSTY "
+echo -e "  ************************************************"
 echo -e ""
-echo -e " Proses peng-installan bisa lebih lama dari perkiraan, pastikan koneksi internet anda stabil !..."
+read -n 1 -s -r -p "Tekan ENTER untuk melanjutkan / CTRL + C untuk membatalkan"
 sleep 2
 echo -e ""
-echo -e " GO !!! ..."
-sleep 2
-echo -e ""
-clear 
 
-cd
+cd /root
 opkg update
 opkg remove --force-depends luci-app-openclash
 sleep 2
@@ -51,7 +49,7 @@ sleep 2
 rm -rf /tmp/luci*
 sleep 2
 
-cd
+cd /root
 opkg update
 sleep 2
 
@@ -74,5 +72,6 @@ echo -e ""
 echo -e ""
 echo -e " Installasi sudah selesai, Openclash sudah bisa dapat dijalankan ^_^ ..."
 echo -e ""
-read -n 1 -s -r -p "Pencet tombol apa saja untuk keluar / kembali"
+read -n 1 -s -r -p "Pencet tombol apa saja untuk keluar & kembali"
+clear
 exit
