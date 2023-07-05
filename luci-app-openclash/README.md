@@ -1,6 +1,6 @@
 # luci-app-openclash
 
-- OpenClash_0.45.129-beta MOD Smooth GUI
+- OpenClash_Lastest-Version
 - Include Proxies LIVE.ON
 - Include Proxies TSEL-ILPED
 - Include Config Single Modem
