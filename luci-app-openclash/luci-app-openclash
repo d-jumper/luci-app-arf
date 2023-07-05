@@ -9,184 +9,141 @@ tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
+# // Export Color & Information
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[0;33m'
+export BLUE='\033[0;34m'
+export PURPLE='\033[0;35m'
+export CYAN='\033[0;36m'
+export LIGHT='\033[0;37m'
+export NC='\033[0m'
+
+# // Export Banner Status Information
+export EROR="[${RED} EROR ${NC}]"
+export INFO="[${YELLOW} INFO ${NC}]"
+export OKEY="[${GREEN} OKEY ${NC}]"
+export PENDING="[${YELLOW} PENDING ${NC}]"
+export SEND="[${YELLOW} SEND ${NC}]"
+export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
+
+# // Export Align
+export BOLD="\e[1m"
+export WARNING="${RED}\e[5m"
+export UNDERLINE="\e[4m"
+clear
+
 f_oc="/etc/openclash"
 oc="luci-app-openclash"
 rule_oc="/rule_provider"
 luci="/usr/lib/lua/luci/view/openclash"
-luci_static="/www/luci-static/resources/openclash"
+lucic="/usr/lib/lua/luci/controller"
+luci_static="/www/luci-static/resources/openclash/img"
 api_oc="api.github.com/repos/vernesong/OpenClash/releases"
 download_oc="github.com/vernesong/OpenClash/releases/download"
 arfprsty810="raw.githubusercontent.com/arfprsty810/luci-app-arf/main/${oc}"
 lastest_version="$(curl -s "https://${api_oc}" | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 clear
 
-echo -e "[ ${tyblue}INFO$NC ]  ************************************************"
-echo -e "[ ${tyblue}INFO$NC ]         Installer OpenClash Mod by ARF.PRSTY "
-echo -e "[ ${tyblue}INFO$NC ]  ************************************************"
+echo -e "\033[0;34m┌─────────────────────────────────────────────────────┐${NC}"
+echo -e "             ⇱ \e[32;1mAuto Installer Openclash Mod\e[0m ⇲ "
+echo -e "\033[0;34m└─────────────────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  [ ${green}INFO$NC ] Notes : "
-echo -e "- [ ${green}INFO$NC ]Installer ini akan menghapus semua data yang ada di Openclash sebelumnya."
-echo -e "- [ ${green}INFO$NC ]Pastikan anda telah mem-backup data config dan data penting openclash anda."
-echo -e "- [ ${green}INFO$NC ]Saya tidak bertanggung jawab atas hilang nya semua data Openclash"
-echo -e "- [ ${green}INFO$NC ]Termasuk semua data config & data rules & data proxies."
-sleep 5
+echo -e "  ${INFO}\e[32;1m Notes :\e[32;1m "
+echo -e "${NC}-${CYAN} Installer ini akan menghapus semua data yang ada di Openclash sebelumnya. ${NC}"
+echo -e "${NC}-${CYAN} Pastikan anda telah mem-backup data config dan data penting openclash anda. ${NC}"
+echo -e "${NC}-${CYAN} Saya tidak bertanggung jawab atas hilang nya semua data Openclash anda. ${NC}"
+echo -e "${NC}-${CYAN} Termasuk semua data config & data rules & data proxies. ${NC}"
 echo -e ""
-echo -e "  [ ${green}INFO$NC ] Installer ini akan menggantikan semua data sebelumnya ke versi Terbaru :"
-echo -e "- [ ${green}INFO$NC ]OpenClash_${lastest_version}"
-echo -e "- [ ${green}INFO$NC ]MOD Smooth GUI"
-echo -e "- [ ${green}INFO$NC ]Include Proxies LIVE.ON"
-echo -e "- [ ${green}INFO$NC ]Include Proxies TSEL-ILPED"
-echo -e "- [ ${green}INFO$NC ]Include Config Single Modem"
-echo -e "- [ ${green}INFO$NC ]Include Config Dual Modem / Loadbalance"
-echo -e "- [ ${green}INFO$NC ]Include Simple Rules / Pisah Trafic"
-echo -e "- [ ${green}INFO$NC ]Include Adguard DNS"
-echo -e "- [ ${green}INFO$NC ]Include YACD PANEL TAB"
-echo -e "- [ ${green}INFO$NC ]Include Config Editor ( Tinyfm )"
+echo -e "  ${INFO}\e[32;1m Installer ini akan menggantikan semua data sebelumnya ke versi Terbaru :\e[32;1m"
+echo -e "${NC}-${CYAN} OpenClash_${lastest_version} ${NC}"
+echo -e "${NC}-${CYAN} MOD Smooth GUI ${NC}"
+echo -e "${NC}-${CYAN} Include Proxies LIVE.ON ${NC}"
+echo -e "${NC}-${CYAN} Include Proxies TSEL-ILPED ${NC}"
+echo -e "${NC}-${CYAN} Include Config Single Modem ${NC}"
+echo -e "${NC}-${CYAN} Include Config Dual Modem / Loadbalance ${NC}"
+echo -e "${NC}-${CYAN} Include Simple Rules / Pisah Trafic ${NC}"
+echo -e "${NC}-${CYAN} Include Adguard DNS ${NC}"
+echo -e "${NC}-${CYAN} Include YACD PANEL TAB ${NC}"
+echo -e "${NC}-${CYAN} Include Config Editor ( Tinyfm ) ${NC}"
 echo -e ""
-echo -e " [ ${green}INFO$NC ] Proses peng-installan bisa lebih lama dari perkiraan, pastikan koneksi internet stabil!..."
+echo -e " ${INFO}\e[32;1m Proses peng-installan bisa lebih lama dari waktu perkiraan.\e[32;1m"
+echo -e " ${INFO}\e[32;1m Update ini memerlukan koneksi jaringan internet.\e[32;1m" 
+echo -e " ${INFO}\e[32;1m Pastikan koneksi jaringan internet stabil.\e[32;1m"
 echo -e ""
-echo -e "[ ${tyblue}INFO$NC ]  ************************************************"
-echo -e "[ ${tyblue}INFO$NC ]         Installer IPK.MOD Mod by ARF.PRSTY "
-echo -e "[ ${tyblue}INFO$NC ]  ************************************************"
+echo -e "\033[0;34m┌─────────────────────────────────────────────────────┐${NC}"
+echo -e "             ⇱ \e[32;1mAuto Installer Openclash Mod\e[0m ⇲ "
+echo -e "\033[0;34m└─────────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "Tekan ENTER untuk melanjutkan / CTRL + C untuk membatalkan"
 sleep 2
 clear
 
+echo -e "\033[0;34m┌─────────────────────────────────────────────────────┐${NC}"
+echo -e "             ⇱ \e[32;1mAuto Installer Openclash Mod\e[0m ⇲ "
+echo -e "\033[0;34m└─────────────────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "${INFO}\e[32;1m Proses Instalasi sedang berlangsung, mohon tunggu hingga selesai."
+echo -e ""
+
 cd /root
-echo -e "[ ${tyblue}INFO$NC ]  ************************************************"
-echo -e "[ ${tyblue}INFO$NC ]         Installer OpenClash Mod by ARF.PRSTY "
-echo -e "[ ${tyblue}INFO$NC ]  ************************************************"
-echo -e ""
-echo -e "[ ${green}INFO$NC ] Proses Instalasi sedang berlangsung, mohon tunggu hingga selesai"
-echo -e ""
-
 opkg update >/dev/null 2>&1
-echo -e "[ ${GREEN}ok${NC} ] Meng-update seluruh data Package ..."
-
-opkg remove --force-depends ${oc} >/dev/null 2>&1
-rm -rvf ${f_oc}* >/dev/null 2>&1
-rm -rf /tmp/luci* >/dev/null 2>&1
-rm -rf /usr/lib/lua/luci/model/cbi/openclash* >/dev/null 2>&1
-rm -rf ${luci}* >/dev/null 2>&1
-rm -rf /usr/lib/lua/luci/view/controller/openclash* >/dev/null 2>&1
-rm -rf ${luci_static}* >/dev/null 2>&1
-rm -rf /tmp/openclash* >/dev/null 2>&1
-rm -rf /tmp/clash* >/dev/null 2>&1
-rm -rf /tmp/luci* >/dev/null 2>&1
-echo -e "[ ${GREEN}ok${NC} ] Menghapus file lama Openclash ..."
-sleep 2
-
-opkg update >/dev/null 2>&1
-mkdir /root/luci-app-arf/
-cd /root/luci-app-arf/
-echo -e "[ ${GREEN}ok${NC} ] Meng-update seluruh data Package ..."
-sleep 2
-
-wget "https://${download_oc}/v${lastest_version}/${oc}_${lastest_version}_all.ipk"
-sleep 2
+mkdir -p /root/luci-app-arf/ >/dev/null 2>&1
+cd /root/luci-app-arf/ 2>&1
+wget "https://${download_oc}/v${lastest_version}/${oc}_${lastest_version}_all.ipk" >/dev/null 2>&1
+wget "https://${arfprsty810}/${oc}.zip" >/dev/null 2>&1
+#opkg remove --force-depends ${oc} >/dev/null 2>&1
 opkg install --force-depends *.ipk >/dev/null 2>&1
-echo -e "[ ${GREEN}ok${NC} ] Meng-install Openclash Terbaru ..."
 sleep 2
+echo -e "${OKEY}${NC} ${CYAN} Berhasil Meng-install Openclash Terbaru ...${NC}"
 
-rm -rvf ${f_oc}/backup/* >/dev/null 2>&1
-rm -rvf ${f_oc}/config/* >/dev/null 2>&1
-rm -rvf ${f_oc}/core/* >/dev/null 2>&1
-rm -rvf ${f_oc}/game_rules/* >/dev/null 2>&1
-rm -rvf ${f_oc}/proxy_provider/* >/dev/null 2>&1
-rm -rvf ${f_oc}${rule_oc}/* >/dev/null 2>&1
-rm -rvf ${f_oc}/*.conf >/dev/null 2>&1
-rm -rvf ${f_oc}/*.ipset >/dev/null 2>&1
-rm -rvf ${f_oc}/*.mmdb >/dev/null 2>&1
-rm -rvf ${f_oc}/*.dat >/dev/null 2>&1
-wget -o /etc/config/openclash "https://${arfprsty810}/etc/config/openclash" >/dev/null 2>&1
-wget -o ${f_oc}/config/Config_Modem_1.yaml "https://${arfprsty810}${f_oc}/config/Config_Modem_1.yaml" >/dev/null 2>&1
-wget -o ${f_oc}/config/Config_Modem_2.yaml "https://${arfprsty810}${f_oc}/config/Config_Modem_2.yaml" >/dev/null 2>&1
-wget -o ${f_oc}/config/Config_Multi_LoadBalance.yaml "https://${arfprsty810}${f_oc}/config/Config_Multi_LoadBalance.yaml" >/dev/null 2>&1
-wget -o ${f_oc}/core/clash "https://${arfprsty810}${f_oc}/core/clash" >/dev/null 2>&1
-wget -o ${f_oc}/core/clash_meta "https://${arfprsty810}${f_oc}/core/clash_meta" >/dev/null 2>&1
-wget -o ${f_oc}/core/clash_tun "https://${arfprsty810}${f_oc}/core/clash_tun" >/dev/null 2>&1
-wget -o ${f_oc}/proxy_provider/Network-1.yaml "https://${arfprsty810}${f_oc}/proxy_provider/Network-1.yaml" >/dev/null 2>&1
-wget -o ${f_oc}/proxy_provider/Network-2.yaml "https://${arfprsty810}${f_oc}/proxy_provider/Network-2.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-Port.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-Port.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-Speedtest.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-Speedtest.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-ads.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-ads.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-banking-domain.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-banking-domain.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-banking.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-banking.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-direct.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-direct.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-gaming-domain.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-gaming-domain.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-gaming.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-gaming.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-idn-domain.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-idn-domain.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-idn.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-idn.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-porn.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-porn.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-sosmed-domain.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-sosmed-domain.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-sosmed.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-sosmed.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-streaming-domain.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-streaming-domain.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-streaming.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-streaming.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-umum-domain.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-umum-domain.yaml" >/dev/null 2>&1
-wget -o ${f_oc}${rule_oc}/Rule-umum.yaml "https://${arfprsty810}${f_oc}${rule_oc}/Rule-umum.yaml" >/dev/null 2>&1
-wget -o ${f_oc}/Country.mmdb "https://${arfprsty810}${f_oc}/Country.mmdb" >/dev/null 2>&1
-wget -o ${f_oc}/GeoIP.dat "https://${arfprsty810}${f_oc}/GeoIP.dat" >/dev/null 2>&1
-wget -o ${f_oc}/GeoSite.dat "https://${arfprsty810}${f_oc}/GeoSite.dat" >/dev/null 2>&1
-wget -o ${f_oc}/accelerated-domains.china.conf "https://${arfprsty810}${f_oc}/accelerated-domains.china.conf" >/dev/null 2>&1
-wget -o ${f_oc}/china_ip6_route.ipset "https://${arfprsty810}${f_oc}/china_ip6_route.ipset" >/dev/null 2>&1
-wget -o ${f_oc}/china_ip_route.ipset "https://${arfprsty810}${f_oc}/china_ip_route.ipset" >/dev/null 2>&1
-wget -o /usr/lib/lua/luci/controller/openclash.lua "https://${arfprsty810}/usr/lib/lua/luci/controller/openclash.lua" >/dev/null 2>&1
-wget -o ${luci}/cfg_check.htm "https://${arfprsty810}${luci}/cfg_check.htm" >/dev/null 2>&1
-wget -o ${luci}/config_editor.htm "https://${arfprsty810}${luci}/config_editor.htm" >/dev/null 2>&1
-wget -o ${luci}/debug.htm "https://${arfprsty810}${luci}/debug.htm" >/dev/null 2>&1
-wget -o ${luci}/developer.htm "https://${arfprsty810}${luci}/developer.htm" >/dev/null 2>&1
-wget -o ${luci}/dler_login.htm "https://${arfprsty810}${luci}/dler_login.htm" >/dev/null 2>&1
-wget -o ${luci}/dlercloud.htm "https://${arfprsty810}${luci}/dlercloud.htm" >/dev/null 2>&1
-wget -o ${luci}/download_rule.htm "https://${arfprsty810}${luci}/download_rule.htm" >/dev/null 2>&1
-wget -o ${luci}/download_stream_domains.htm "https://${arfprsty810}${luci}/download_stream_domains.htm" >/dev/null 2>&1
-wget -o ${luci}/dvalue.htm "https://${arfprsty810}${luci}/dvalue.htm" >/dev/null 2>&1
-wget -o ${luci}/flush_fakeip_cache.htm "https://${arfprsty810}${luci}/flush_fakeip_cache.htm" >/dev/null 2>&1
-wget -o ${luci}/input_file_name.htm "https://${arfprsty810}${luci}/input_file_name.htm" >/dev/null 2>&1
-wget -o ${luci}/input_rename.htm "https://${arfprsty810}${luci}/input_rename.htm" >/dev/null 2>&1
-wget -o ${luci}/log.htm "https://${arfprsty810}${luci}/log.htm" >/dev/null 2>&1
-wget -o ${luci}/myip.htm "https://${arfprsty810}${luci}/myip.htm" >/dev/null 2>&1
-wget -o ${luci}/oceditor.htm "https://${arfprsty810}${luci}/oceditor.htm" >/dev/null 2>&1
-wget -o ${luci}/other_button.htm "https://${arfprsty810}${luci}/other_button.htm" >/dev/null 2>&1
-wget -o ${luci}/other_stream_option.htm "https://${arfprsty810}${luci}/other_stream_option.htm" >/dev/null 2>&1
-wget -o ${luci}/server_url.htm "https://${arfprsty810}${luci}/server_url.htm" >/dev/null 2>&1
-wget -o ${luci}/status.htm "https://${arfprsty810}${luci}/status.htm" >/dev/null 2>&1
-wget -o ${luci}/sub_info_show.htm "https://${arfprsty810}${luci}/sub_info_show.htm" >/dev/null 2>&1
-wget -o ${luci}/switch_dashboard.htm "https://${arfprsty810}${luci}/switch_dashboard.htm" >/dev/null 2>&1
-wget -o ${luci}/switch_mode.htm "https://${arfprsty810}${luci}/switch_mode.htm" >/dev/null 2>&1
-wget -o ${luci}/tblsection.htm "https://${arfprsty810}${luci}/tblsection.htm" >/dev/null 2>&1
-wget -o ${luci}/tblsection_dns.htm "https://${arfprsty810}${luci}/tblsection_dns.htm" >/dev/null 2>&1
-wget -o ${luci}/toolbar_show.htm "https://${arfprsty810}${luci}/toolbar_show.htm" >/dev/null 2>&1
-wget -o ${luci}/update.htm "https://${arfprsty810}${luci}/update.htm" >/dev/null 2>&1
-wget -o ${luci}/upload.htm "https://${arfprsty810}${luci}/upload.htm" >/dev/null 2>&1
-wget -o ${luci}/yacd.htm "https://${arfprsty810}${luci}/yacd.htm" >/dev/null 2>&1
-wget -o ${luci_static}/Sponsor.svg "https://${arfprsty810}${luci_static}/Sponsor.svg" >/dev/null 2>&1
-wget -o ${luci_static}/Star.svg "https://${arfprsty810}${luci_static}/Star.svg" >/dev/null 2>&1
-wget -o ${luci_static}/Telegram.svg "https://${arfprsty810}${luci_static}/Telegram.svg" >/dev/null 2>&1
-wget -o ${luci_static}/Tutorials.svg "https://${arfprsty810}${luci_static}/Tutorials.svg" >/dev/null 2>&1
-wget -o ${luci_static}/Wiki.svg "https://${arfprsty810}${luci_static}/Wiki.svg" >/dev/null 2>&1
-wget -o ${luci_static}/arrow-clockwise-light.svg "https://${arfprsty810}${luci_static}/arrow-clockwise-light.svg" >/dev/null 2>&1
-wget -o ${luci_static}/eye-light.svg "https://${arfprsty810}${luci_static}/eye-light.svg" >/dev/null 2>&1
-wget -o ${luci_static}/eye-slash-light.svg "https://${arfprsty810}${luci_static}/eye-slash-light.svg" >/dev/null 2>&1
-wget -o ${luci_static}/logo.png "https://${arfprsty810}${luci_static}/logo.png" >/dev/null 2>&1
-wget -o ${luci_static}/meta.png "https://${arfprsty810}${luci_static}/meta.png" >/dev/null 2>&1
-wget -o ${luci_static}/wrench-light.svg "https://${arfprsty810}${luci_static}/wrench-light.svg" >/dev/null 2>&1
-echo -e "[ ${GREEN}ok${NC} ] Membuat file Mod Openclash ..."
+unzip -o luci-app-openclash.zip -d / 2>&1
 sleep 2
+chmod 755 ${f_oc}/backup/* >/dev/null 2>&1
+chmod 755 ${f_oc}/config/* >/dev/null 2>&1
+chmod 755 ${f_oc}/core/* >/dev/null 2>&1
+chmod 755 ${f_oc}/game_rules/* >/dev/null 2>&1
+chmod 755 ${f_oc}/proxy_provider/* >/dev/null 2>&1
+chmod 755 ${f_oc}${rule_oc}/* >/dev/null 2>&1
+chmod 755 ${f_oc}/*.conf >/dev/null 2>&1
+chmod 755 ${f_oc}/*.ipset >/dev/null 2>&1
+chmod 755 ${f_oc}/*.mmdb >/dev/null 2>&1
+chmod 755 ${f_oc}/*.dat >/dev/null 2>&1
+chmod 755 /etc/config/openclash 2>&1
+chmod 755 ${lucic}/openclash.lua 2>&1
+chmod 755 ${luci}/*.htm 2>&1
+chmod 755 ${luci_static}/Sponsor.svg 2>&1
+chmod 755 ${luci_static}/Star.svg 2>&1
+chmod 755 ${luci_static}/Star.svg 2>&1
+chmod 755 ${luci_static}/Tutorials.svg 2>&1
+chmod 755 ${luci_static}/Wiki.svg 2>&1
+chmod 755 ${luci_static}/arrow-clockwise-light.svg 2>&1
+chmod 755 ${luci_static}/eye-light.svg 2>&1
+chmod 755 ${luci_static}/eye-slash-light.svg 2>&1
+chmod 755 ${luci_static}/logo.png 2>&1
+chmod 755 ${luci_static}/meta.png 2>&1
+chmod 755 ${luci_static}/wrench-light.svg 2>&1
+sleep 2
+echo -e "${OKEY}${NC} ${CYAN} Berhasil Menginstall file MOD ...${NC}"
+sleep 1
+echo -e "${OKEY}${NC} ${CYAN} Berhasil Membersihkan File-file yang sudah tidak terpakai ...${NC}"
 
-cd /root
-rm -rvf /root/luci-app-arf* >/dev/null 2>&1
+cd /root 2>&1
+#rm -rvf /root/luci-app-arf* >/dev/null 2>&1
 rm -rf /usr/bin/${oc}* >/dev/null 2>&1
 rm -rf /tmp/luci* >/dev/null 2>&1
-echo -e "[ ${GREEN}ok${NC} ] Membersihkan File-file yang sudah tidak terpakai ..."
+echo -e "${OKEY}${NC} ${CYAN} Berhasil Membersihkan File-file yang sudah tidak terpakai ...${NC}"
 sleep 2
-
-echo -e "[ ${GREEN}ok${NC} ] Finished ..."
-sleep 2
-
+echo -e "${OKEY}${NC} ${CYAN}Finished ...${NC}"
 echo -e ""
 echo -e ""
-echo -e "[ ${green}INFO$NC ] Installasi sudah selesai, Openclash sudah bisa dapat dijalankan ^_^ ..."
+/etc/init.d/openclash restart openclash
+sleep 2
+echo -e ""
+echo -e ""
+echo -e "${INFO}\e[32;1m Installasi sudah selesai.\e[32;1m"
+echo -e "${INFO}\e[32;1m Hapus cache browser & Release Ram.\e[32;1m"
+echo -e "${INFO}\e[32;1m Openclash sudah bisa dapat dijalankan ^_^ ...\e[32;1m"
 echo -e ""
 read -n 1 -s -r -p "Pencet tombol apa saja untuk keluar & kembali"
 clear
