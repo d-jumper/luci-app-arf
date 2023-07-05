@@ -1,0 +1,21 @@
+proxies:
+# LIVE-ON
+# --------------------------------------------- SGP ---------------------------------------------
+  - name: LIVE.ON
+    server: liveon.d-jumper.me
+    port: 443
+    type: vmess
+    uuid: YOUR_UUID
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: server.com
+    network: ws
+    ws-opts: 
+      path: /vmess
+      headers: 
+        Host: server.com
+#    interface-name: macvlan
+# --------------------------------------------- END PROXIES ---------------------------------------------

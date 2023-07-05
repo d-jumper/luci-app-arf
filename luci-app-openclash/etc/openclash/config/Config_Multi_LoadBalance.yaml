@@ -1,0 +1,411 @@
+---
+
+proxy-groups:
+- name: "📡TUNNEL-SERVER📡"
+  type: select
+  disable-udp: false
+  use:
+  - "📡NETWORK-1📡"
+  - "📡NETWORK-2📡"
+
+- name: "⭕LoadBalance-Server⭕"
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - "📡NETWORK-1📡"
+  - "📡NETWORK-2📡"
+  url: http://ping.xmbb.net/
+  interval: '180'
+
+- name: "⭕LoadBalance-Group⭕"
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  proxies:
+  - "📡MODEM-1📡"
+  - "📡MODEM-2📡"
+  url: http://ping.xmbb.net/
+  interval: '180'
+
+- name: "🎮GAMING🎮"
+  type: select
+  disable-udp: false
+  proxies:
+  - Direct Modem
+  - ✴️Best-PING✴️
+  use:
+  - "📡NETWORK-1📡"
+  - "📡NETWORK-2📡"
+  
+- name: "💳M-BANKING💳"
+  type: select
+  disable-udp: false
+  proxies:
+  - Direct Modem
+  use:
+  - "📡NETWORK-1📡"
+  - "📡NETWORK-2📡"
+
+- name: "BLOCK-ADS"
+  type: select
+  disable-udp: false
+  proxies:
+  - REJECT
+  - Direct Modem
+  use:
+  - "📡NETWORK-1📡"
+  - "📡NETWORK-2📡"
+
+- name: "✴️Best-PING✴️"
+  type: url-test
+  disable-udp: false
+  use:
+  - "📡NETWORK-1📡"
+  - "📡NETWORK-2📡"
+  url: http://ping.xmbb.net/
+  interval: '180'
+  tolerance: '150'
+
+- name: "📡MODEM-1📡"
+  type: load-balance
+  strategy: consistent-hashing
+  disable-udp: false
+  use:
+  - "📡NETWORK-1📡"
+  url: http://ping.xmbb.net/
+  interval: '180'
+
+- name: "📡MODEM-2📡"
+  type: load-balance
+  strategy: consistent-hashing
+  disable-udp: false
+  use:
+  - "📡NETWORK-2📡"
+  url: http://ping.xmbb.net/
+  interval: '180'
+
+- name: Direct Modem
+  type: select
+  disable-udp: false
+  proxies:
+  - Direct MODEM-1
+  - Direct MODEM-2
+  
+- name: Direct MODEM-1
+  type: select
+  disable-udp: false
+  interface-name: macvlan1
+  proxies:
+  - DIRECT
+  
+- name: Direct MODEM-2
+  type: select
+  disable-udp: false
+  interface-name: macvlan2
+  proxies:
+  - DIRECT
+
+proxy-providers:
+  "📡NETWORK-1📡":
+    type: file
+    path: "./proxy_provider/Network-1.yaml"
+    health-check:
+      enable: true
+      url: http://ping.xmbb.net/
+      interval: 1200
+
+  "📡NETWORK-2📡":
+    type: file
+    path: "./proxy_provider/Network-2.yaml"
+    health-check:
+      enable: true
+      url: http://ping.xmbb.net/
+      interval: 1200
+
+redir-port: 7892
+tproxy-port: 7895
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: '0987654321'
+bind-address: "*"
+external-ui: "/usr/share/openclash/ui"
+ipv6: false
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+  - "+.*"
+  - "*.lan"
+  - "*.localdomain"
+  - "*.example"
+  - "*.invalid"
+  - "*.localhost"
+  - "*.test"
+  - "*.local"
+  - "*.home.arpa"
+  - time.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - time.*.apple.com
+  - time-ios.apple.com
+  - time1.*.com
+  - time2.*.com
+  - time3.*.com
+  - time4.*.com
+  - time5.*.com
+  - time6.*.com
+  - time7.*.com
+  - ntp.*.com
+  - ntp1.*.com
+  - ntp2.*.com
+  - ntp3.*.com
+  - ntp4.*.com
+  - ntp5.*.com
+  - ntp6.*.com
+  - ntp7.*.com
+  - "*.time.edu.cn"
+  - "*.ntp.org.cn"
+  - "+.pool.ntp.org"
+  - time1.cloud.tencent.com
+  - music.163.com
+  - "*.music.163.com"
+  - "*.126.net"
+  - musicapi.taihe.com
+  - music.taihe.com
+  - songsearch.kugou.com
+  - trackercdn.kugou.com
+  - "*.kuwo.cn"
+  - api-jooxtt.sanook.com
+  - api.joox.com
+  - joox.com
+  - y.qq.com
+  - "*.y.qq.com"
+  - streamoc.music.tc.qq.com
+  - mobileoc.music.tc.qq.com
+  - isure.stream.qqmusic.qq.com
+  - dl.stream.qqmusic.qq.com
+  - aqqmusic.tc.qq.com
+  - amobile.music.tc.qq.com
+  - "*.xiami.com"
+  - "*.music.migu.cn"
+  - music.migu.cn
+  - "+.msftconnecttest.com"
+  - "+.msftncsi.com"
+  - msftconnecttest.com
+  - msftncsi.com
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - "+.srv.nintendo.net"
+  - "*.n.n.srv.nintendo.net"
+  - "+.stun.playstation.net"
+  - xbox.*.*.microsoft.com
+  - "*.*.xboxlive.com"
+  - xbox.*.microsoft.com
+  - xnotify.xboxlive.com
+  - "+.battlenet.com.cn"
+  - "+.wotgame.cn"
+  - "+.wggames.cn"
+  - "+.wowsgame.cn"
+  - "+.wargaming.net"
+  - proxy.golang.org
+  - stun.*.*
+  - stun.*.*.*
+  - "+.stun.*.*"
+  - "+.stun.*.*.*"
+  - "+.stun.*.*.*.*"
+  - "+.stun.*.*.*.*.*"
+  - heartbeat.belkin.com
+  - "*.linksys.com"
+  - "*.linksyssmartwifi.com"
+  - "*.router.asus.com"
+  - mesu.apple.com
+  - swscan.apple.com
+  - swquery.apple.com
+  - swdownload.apple.com
+  - swcdn.apple.com
+  - swdist.apple.com
+  - lens.l.google.com
+  - stun.l.google.com
+  - "+.nflxvideo.net"
+  - "*.square-enix.com"
+  - "*.finalfantasyxiv.com"
+  - "*.ffxiv.com"
+  - "*.ff14.sdo.com"
+  - ff.dorado.sdo.com
+  - "*.mcdn.bilivideo.cn"
+  - "+.media.dssott.com"
+  nameserver:
+  - https://dns.adguard.com/dns-query
+  - tls://dns.adguard-dns.com
+  - https://dns.google/dns-query
+  - tls://dns.google
+  fallback:
+  - https://dns.adguard.com/dns-query
+  - tls://dns.adguard-dns.com
+  - https://dns.google/dns-query
+  - tls://dns.google
+  default-nameserver:
+  - 94.140.14.14
+  - 94.140.15.15
+  - 8.8.8.8
+  - 8.8.4.4
+  fallback-filter:
+    geoip: true
+    geoip-code: ID
+    ipcidr:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+    domain:
+    - "+.google.com"
+    - "+.facebook.com"
+    - "+.youtube.com"
+    - "+.githubusercontent.com"
+    - "+.googlevideo.com"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - "+.*"
+    
+experimental:
+  sniff-tls-sni: true
+  
+tun:
+  enable: true
+  stack: system
+  auto-route: false
+  auto-detect-interface: false
+  dns-hijack:
+  - tcp://any:53
+  
+profile:
+  store-selected: true
+  store-fake-ip: false
+  
+rules:
+- SCRIPT,PortGaming,🎮GAMING🎮
+- SCRIPT,Speedtest,GLOBAL
+- "RULE-SET,Rule-Ads,BLOCK-ADS"
+- "RULE-SET,Rule-Banking,💳M-BANKING💳"
+- "RULE-SET,Rule-Banking-domain,💳M-BANKING💳"
+- "RULE-SET,Rule-Direct,DIRECT"
+- "RULE-SET,Rule-INDO,GLOBAL"
+- "RULE-SET,Rule-INDO-domain,GLOBAL"
+- "RULE-SET,Rule-Gaming,GLOBAL"
+- "RULE-SET,Rule-Gaming-domain,GLOBAL"
+- "RULE-SET,Rule-Porn,GLOBAL"
+- "RULE-SET,Rule-Sosmed,GLOBAL"
+- "RULE-SET,Rule-Sosmed-domain,GLOBAL"
+- "RULE-SET,Rule-Streaming,GLOBAL"
+- "RULE-SET,Rule-Streaming-domain,GLOBAL"
+- "RULE-SET,Rule-Umum,GLOBAL"
+- "RULE-SET,Rule-Umum-domain,GLOBAL"
+- MATCH,GLOBAL
+
+script:
+  shortcuts:
+    PortGaming: network == "udp" and match_provider("Rule-Port")
+    Speedtest: network == "tcp" and match_provider("Rule-Speedtest")
+
+rule-providers:
+  Rule-Ads:
+   type: file
+   behavior: classical
+   path: ./rule_provider/Rule-ads.yaml
+
+  Rule-Banking:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-banking.yaml
+  Rule-Banking-domain:
+    type: file
+    behavior: domain
+    path: ./rule_provider/Rule-banking-domain.yaml
+
+  Rule-Direct:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-direct.yaml
+
+  Rule-Gaming:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-gaming.yaml
+  Rule-Gaming-domain:
+    type: file
+    behavior: domain
+    path: ./rule_provider/Rule-gaming-domain.yaml
+  Rule-Port:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-Port.yaml
+    
+  Rule-INDO:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-idn.yaml
+  Rule-INDO-domain:
+    type: file
+    behavior: domain
+    path: ./rule_provider/Rule-idn-domain.yaml
+
+  Rule-Porn:
+   type: file
+   behavior: classical
+   path: ./rule_provider/Rule-porn.yaml
+
+  Rule-Sosmed:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-sosmed.yaml
+  Rule-Sosmed-domain:
+    type: file
+    behavior: domain
+    path: ./rule_provider/Rule-sosmed-domain.yaml
+
+  Rule-Speedtest:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-Speedtest.yaml
+
+  Rule-Streaming:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-streaming.yaml
+  Rule-Streaming-domain:
+    type: file
+    behavior: domain
+    path: ./rule_provider/Rule-streaming-domain.yaml
+
+  Rule-Umum:
+    type: file
+    behavior: classical
+    path: ./rule_provider/Rule-umum.yaml
+  Rule-Umum-domain:
+    type: file
+    behavior: domain
+    path: ./rule_provider/Rule-umum-domain.yaml

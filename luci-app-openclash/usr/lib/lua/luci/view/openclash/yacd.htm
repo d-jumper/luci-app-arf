@@ -1,0 +1,8 @@
+<%+header%>
+<div class="cbi-map">
+<iframe id="yacd" style="width: 100%; min-height: 650px; border: none; border-radius: 2px;"></iframe>
+</div>
+<script type="text/javascript">
+document.getElementById("yacd").src = window.location.protocol + "//" + window.location.host + ":9090/ui/yacd/?hostname=192.168.1.1&&secret=0987654321";
+</script>
+<%+footer%>
