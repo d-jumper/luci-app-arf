@@ -87,7 +87,6 @@ echo -e "${INFO}\e[32;1m Proses Instalasi sedang berlangsung, mohon tunggu hingg
 echo -e ""
 
 cd /root
-opkg update >/dev/null 2>&1
 mkdir -p /root/luci-app-arf/ >/dev/null 2>&1
 cd /root/luci-app-arf/ 2>&1
 wget "https://${download_oc}/v${lastest_version}/${oc}_${lastest_version}_all.ipk" >/dev/null 2>&1
@@ -129,7 +128,7 @@ sleep 1
 echo -e "${OKEY}${NC} ${CYAN} Berhasil Membersihkan File-file yang sudah tidak terpakai ...${NC}"
 
 cd /root 2>&1
-#rm -rvf /root/luci-app-arf* >/dev/null 2>&1
+rm -rvf /root/luci-app-arf* >/dev/null 2>&1
 rm -rf /usr/bin/${oc}* >/dev/null 2>&1
 rm -rf /tmp/luci* >/dev/null 2>&1
 echo -e "${OKEY}${NC} ${CYAN} Berhasil Membersihkan File-file yang sudah tidak terpakai ...${NC}"
@@ -138,6 +137,7 @@ echo -e "${OKEY}${NC} ${CYAN}Finished ...${NC}"
 echo -e ""
 echo -e ""
 /etc/init.d/openclash restart openclash
+/etc/init.d/openclash start openclash
 sleep 2
 echo -e ""
 echo -e ""
