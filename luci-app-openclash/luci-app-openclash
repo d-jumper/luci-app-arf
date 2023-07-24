@@ -96,7 +96,18 @@ opkg install --force-depends *.ipk >/dev/null 2>&1
 sleep 2
 echo -e "${OKEY}${NC} ${CYAN} Berhasil Meng-install Openclash Terbaru ...${NC}"
 
+rm -rvf ${f_oc}/backup/*
+rm -rvf ${f_oc}/config/*
+rm -rvf ${f_oc}/core/*
+rm -rvf ${f_oc}/game_rules/*
+rm -rvf ${f_oc}/proxy_provider/*
+rm -rvf ${f_oc}${rule_oc}/*
+rm -rvf ${f_oc}/*.conf >/dev/null 2>&1
+rm -rvf ${f_oc}/*.ipset >/dev/null 2>&1
+rm -rvf ${f_oc}/*.mmdb >/dev/null 2>&1
+rm -rvf ${f_oc}/*.dat >/dev/null 2>&1
 unzip -o luci-app-openclash.zip -d / 2>&1
+
 sleep 2
 chmod 755 ${f_oc}/backup/* >/dev/null 2>&1
 chmod 755 ${f_oc}/config/* >/dev/null 2>&1
