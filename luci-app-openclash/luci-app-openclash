@@ -41,7 +41,7 @@ lucic="/usr/lib/lua/luci/controller"
 luci_static="/www/luci-static/resources/openclash/img"
 api_oc="api.github.com/repos/vernesong/OpenClash/releases"
 download_oc="github.com/vernesong/OpenClash/releases/download"
-arfprsty810="raw.githubusercontent.com/arfprsty810/luci-app-arf/main/${oc}"
+arfprsty810="raw.githubusercontent.com/d-jumper/luci-app-arf/main/${oc}"
 lastest_version="$(curl -s "https://${api_oc}" | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 clear
 
